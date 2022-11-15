@@ -19,7 +19,8 @@ let draw = (~x, ~y, ~w, ~h, ~color, ~isPressed, env) => {
   open Reprocessing
 
   let {r, g, b, a} = Color.toRgba(color)
+  let color = isPressed ? Constants.black : Utils.color(~r, ~g, ~b, ~a)
 
-  Draw.fill(isPressed ? {r: 0., g: 0., b: 0., a: 0.} : {r: r, g: g, b: b, a: a}, env)
+  Draw.fill(color, env)
   Draw.rect(~pos=(x, y), ~width=w, ~height=h, env)
 }
