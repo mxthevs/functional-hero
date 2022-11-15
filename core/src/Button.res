@@ -12,35 +12,35 @@ type state = {
 
 let init = [
   {
-    x: Common.width / 2 - size / 2 - padd * 2 /* 110 */,
+    x: Common.width / 2 - size / 2 - padd * 2,
     y: Common.subHeight(yPos),
     w: size,
     h: size,
     color: Green,
   },
   {
-    x: Common.width / 2 - size / 2 - padd /* 220 */,
+    x: Common.width / 2 - size / 2 - padd,
     y: Common.subHeight(yPos),
     w: size,
     h: size,
     color: Red,
   },
   {
-    x: Common.width / 2 - size / 2 /* 330 */,
+    x: Common.width / 2 - size / 2,
     y: Common.subHeight(yPos),
     w: size,
     h: size,
     color: Yellow,
   },
   {
-    x: Common.width / 2 - size / 2 + padd /* 440 */,
+    x: Common.width / 2 - size / 2 + padd,
     y: Common.subHeight(yPos),
     w: size,
     h: size,
     color: Blue,
   },
   {
-    x: Common.width / 2 - size / 2 + padd * 2 /* 550 */,
+    x: Common.width / 2 - size / 2 + padd * 2,
     y: Common.subHeight(yPos),
     w: size,
     h: size,
