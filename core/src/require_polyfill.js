@@ -67,7 +67,7 @@ function concat(dirname, filename) {
   if (filename[0] === dir_sep) {
     return filename;
   }
-  
+
   var l = dirname.length;
   if (l === 0 || dirname[l - 1 | 0] === dir_sep) {
     return dirname + filename;
