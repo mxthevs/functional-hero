@@ -14,6 +14,12 @@ let init = {
   orange: false,
 }
 
+let isGreen = state => state.green
+let isRed = state => state.red
+let isYellow = state => state.yellow
+let isBlue = state => state.blue
+let isOrange = state => state.orange
+
 let keyDown = (code, state) => {
   open Reprocessing_Events
   switch code {
