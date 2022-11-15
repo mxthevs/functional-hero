@@ -3,16 +3,49 @@ type state = {
   y: int,
   w: int,
   h: int,
-  isPressed: bool,
   color: Color.t,
 }
 
+%%private(let size = 50)
+%%private(let yPos = size + 10)
+%%private(let padd = size + 60)
+
 let init = [
-  {x: 110, y: Common.subHeight(110), w: 100, h: 100, isPressed: false, color: Green},
-  {x: 220, y: Common.subHeight(110), w: 100, h: 100, isPressed: false, color: Red},
-  {x: 330, y: Common.subHeight(110), w: 100, h: 100, isPressed: false, color: Yellow},
-  {x: 440, y: Common.subHeight(110), w: 100, h: 100, isPressed: false, color: Blue},
-  {x: 550, y: Common.subHeight(110), w: 100, h: 100, isPressed: false, color: Orange},
+  {
+    x: Common.width / 2 - size / 2 - padd * 2 /* 110 */,
+    y: Common.subHeight(yPos),
+    w: size,
+    h: size,
+    color: Green,
+  },
+  {
+    x: Common.width / 2 - size / 2 - padd /* 220 */,
+    y: Common.subHeight(yPos),
+    w: size,
+    h: size,
+    color: Red,
+  },
+  {
+    x: Common.width / 2 - size / 2 /* 330 */,
+    y: Common.subHeight(yPos),
+    w: size,
+    h: size,
+    color: Yellow,
+  },
+  {
+    x: Common.width / 2 - size / 2 + padd /* 440 */,
+    y: Common.subHeight(yPos),
+    w: size,
+    h: size,
+    color: Blue,
+  },
+  {
+    x: Common.width / 2 - size / 2 + padd * 2 /* 550 */,
+    y: Common.subHeight(yPos),
+    w: size,
+    h: size,
+    color: Orange,
+  },
 ]
 
 let draw = (~x, ~y, ~w, ~h, ~color, ~isPressed, env) => {
