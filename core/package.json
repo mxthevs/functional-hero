@@ -1,0 +1,23 @@
+{
+  "name": "functional-hero",
+  "scripts": {
+    "vite:dev": "vite",
+    "vite:build": "vite build",
+    "vite:serve": "vite preview",
+    "rescript:build": "rescript build -with-deps",
+    "rescript:start": "rescript build -with-deps -w",
+    "rescript:clean": "rescript clean -with-deps",
+    "build": "yarn rescript:build && yarn vite:build",
+    "serve": "yarn rescript:build && yarn vite:serve",
+    "clean": "yarn rescript:clean && rimraf dist/"
+  },
+  "dependencies": {
+    "reprocessing": "github:RawToast/reprocessing#ml"
+  },
+  "devDependencies": {
+    "npm-run-all": "4.1.5",
+    "rescript": "9.1.4",
+    "rimraf": "3.0.0",
+    "vite": "3.2.4"
+  }
+}

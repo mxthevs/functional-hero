@@ -1,0 +1,13 @@
+{
+  "name": "functional-hero",
+  "sources": "src",
+  "bs-dependencies": ["reprocessing"],
+  "entries": [{
+    "backend": "js",
+    "main-module": "Index"
+  }],
+  "package-specs": {
+    "module": "commonjs"
+  },
+  "refmt": 3
+}
