@@ -4,6 +4,7 @@ type state = {
   w: int,
   h: int,
   color: Color.t,
+  hit: bool,
 }
 
 %%private(let size = 50)
@@ -18,6 +19,7 @@ let init = [
     w: size,
     h: size,
     color: Green,
+    hit: false,
   },
   {
     x: Common.width / 2 - size / 2 - padd,
@@ -25,6 +27,7 @@ let init = [
     w: size,
     h: size,
     color: Red,
+    hit: false,
   },
   {
     x: Common.width / 2 - size / 2,
@@ -32,6 +35,7 @@ let init = [
     w: size,
     h: size,
     color: Yellow,
+    hit: false,
   },
   {
     x: Common.width / 2 - size / 2 + padd,
@@ -39,6 +43,7 @@ let init = [
     w: size,
     h: size,
     color: Blue,
+    hit: false,
   },
   {
     x: Common.width / 2 - size / 2 + padd * 2,
@@ -46,6 +51,7 @@ let init = [
     w: size,
     h: size,
     color: Orange,
+    hit: false,
   },
 ]
 

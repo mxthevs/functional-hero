@@ -4,6 +4,7 @@ open Reprocessing
 type state = {control: Control.state, buttons: array<Button.state>, notes: array<Note.state>}
 
 let foi = float_of_int
+let deref = x => x.contents
 
 let setup = env => {
   Env.size(~width, ~height, env)
@@ -35,39 +36,43 @@ let draw = (state, env) => {
     Note.draw(~x, ~y, ~w, ~h, ~color, env)
   }, state.notes)
 
-  let hit = ref(false)
+  let notes = Array.map(({Note.x: x, y, w, h, hit} as note) => {
+    if hit {
+      note
+    } else {
+      let hit = ref(false)
 
-  Array.iter(({Button.x: bx, y: by, w: bw, h: bh} as button) => {
-    let isPressed = isPressed(button, state)
+      Array.iter(({Button.x: bx, y: by, w: bw, h: bh} as button) => {
+        if (
+          isPressed(button, state) &&
+          Utils.intersectRectRect(
+            ~rect1H=foi(h),
+            ~rect1W=foi(w),
+            ~rect1Pos=(foi(x), foi(y)),
+            ~rect2H=foi(bh),
+            ~rect2W=foi(bw),
+            ~rect2Pos=(foi(bx), foi(by)),
+          )
+        ) {
+          hit := true
+        }
+      }, state.buttons)
 
-    Array.iter(({Note.x: nx, y: ny, w: nw, h: nh}) => {
-      if (
-        isPressed &&
-        Utils.intersectRectRect(
-          ~rect1H=foi(bh),
-          ~rect1W=foi(bw),
-          ~rect1Pos=(foi(bx), foi(by)),
-          ~rect2H=foi(nh),
-          ~rect2W=foi(nw),
-          ~rect2Pos=(foi(nx), foi(ny)),
-        )
-      ) {
-        hit := true
+      {
+        ...note,
+        hit: deref(hit),
       }
-    }, state.notes)
-  }, state.buttons)
+    }
+  }, state.notes)
 
   {
     ...state,
-    notes: Array.map(({Note.x: x, y, w, h, color}) => {
+    notes: Array.map(({Note.y: y, h} as note) => {
       {
-        Note.x: x,
+        ...note,
         y: y + h < height ? y + 5 : Note.defaultY,
-        w: w,
-        h: h,
-        color: color,
       }
-    }, state.notes),
+    }, notes),
   }
 }
 
