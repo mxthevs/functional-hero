@@ -44,12 +44,11 @@ let draw = ({control, buttons, notes, score} as state, env) => {
     Note.draw(~x, ~y, ~w, ~h, ~color, env)
   })
 
-  let notes = notes->Array.map(({x, y, w, h, hit, status} as note) => {
-    if hit || status === Touched {
+  let notes = notes->Array.map(({x, y, w, h, hit} as note) => {
+    if hit {
       note
     } else {
       let hit = ref(false)
-      let status = ref(Note.Untouched)
 
       buttons->Array.forEach(({Button.x: bx, y: by, w: bw, h: bh} as button) => {
         if (
@@ -64,14 +63,12 @@ let draw = ({control, buttons, notes, score} as state, env) => {
           )
         ) {
           hit := true
-          status := Touched
         }
       })
 
       {
         ...note,
         hit: deref(hit),
-        status: deref(status),
       }
     }
   })
@@ -89,7 +86,7 @@ let draw = ({control, buttons, notes, score} as state, env) => {
         y: y + h < height ? y + 5 : Note.defaultY,
       }
     })
-    ->Array.keep(({status}) => status !== Touched),
+    ->Array.keep(({hit}) => !hit),
   }
 }
 

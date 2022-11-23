@@ -1,7 +1,3 @@
-type status =
-  | Untouched
-  | Touched
-
 type state = {
   x: int,
   y: int,
@@ -9,7 +5,6 @@ type state = {
   h: int,
   color: Color.t,
   hit: bool,
-  status: status,
 }
 
 %%private(let size = 50)
@@ -25,7 +20,6 @@ let init = [
     h: size,
     color: Green,
     hit: false,
-    status: Untouched,
   },
   {
     x: Common.width / 2 - size / 2 - padd,
@@ -34,7 +28,6 @@ let init = [
     h: size,
     color: Red,
     hit: false,
-    status: Untouched,
   },
   {
     x: Common.width / 2 - size / 2,
@@ -43,7 +36,6 @@ let init = [
     h: size,
     color: Yellow,
     hit: false,
-    status: Untouched,
   },
   {
     x: Common.width / 2 - size / 2 + padd,
@@ -52,7 +44,6 @@ let init = [
     h: size,
     color: Blue,
     hit: false,
-    status: Untouched,
   },
   {
     x: Common.width / 2 - size / 2 + padd * 2,
@@ -61,7 +52,6 @@ let init = [
     h: size,
     color: Orange,
     hit: false,
-    status: Untouched,
   },
 ]
 
