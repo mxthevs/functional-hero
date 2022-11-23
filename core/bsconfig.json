@@ -9,5 +9,6 @@
   "package-specs": {
     "module": "commonjs"
   },
-  "refmt": 3
+  "refmt": 3,
+  "bsc-flags": ["-bs-super-errors", "-open Belt"]
 }

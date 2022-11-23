@@ -27,22 +27,22 @@ let isPressed = ({Button.color: color}, state) => {
 let draw = (state, env) => {
   Draw.background(Constants.black, env)
 
-  Array.iter(({Button.x: x, y, w, h, color} as button) => {
+  state.buttons->Array.forEach(({Button.x: x, y, w, h, color} as button) => {
     let isPressed = isPressed(button, state)
     Button.draw(~x, ~y, ~w, ~h, ~color, ~isPressed, env)
-  }, state.buttons)
+  })
 
-  Array.iter(({Note.x: x, y, w, h, color}) => {
+  state.notes->Array.forEach(({x, y, w, h, color}) => {
     Note.draw(~x, ~y, ~w, ~h, ~color, env)
-  }, state.notes)
+  })
 
-  let notes = Array.map(({Note.x: x, y, w, h, hit} as note) => {
+  let notes = state.notes->Array.map(({x, y, w, h, hit} as note) => {
     if hit {
       note
     } else {
       let hit = ref(false)
 
-      Array.iter(({Button.x: bx, y: by, w: bw, h: bh} as button) => {
+      state.buttons->Array.forEach(({Button.x: bx, y: by, w: bw, h: bh} as button) => {
         if (
           isPressed(button, state) &&
           Utils.intersectRectRect(
@@ -56,23 +56,23 @@ let draw = (state, env) => {
         ) {
           hit := true
         }
-      }, state.buttons)
+      })
 
       {
         ...note,
         hit: deref(hit),
       }
     }
-  }, state.notes)
+  })
 
   {
     ...state,
-    notes: Array.map(({Note.y: y, h} as note) => {
+    notes: notes->Array.map(({y, h} as note) => {
       {
         ...note,
         y: y + h < height ? y + 5 : Note.defaultY,
       }
-    }, notes),
+    }),
   }
 }
 
