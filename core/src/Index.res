@@ -31,13 +31,12 @@ let isPressed = ({Button.color: color}, control) => {
 }
 
 let draw = ({control, buttons, notes, score} as state, env) => {
-  Draw.background(Constants.white, env)
+  Draw.background(Utils.color(~r=221, ~g=221, ~b=221, ~a=255), env)
+  Draw.text(~body=score.total->Int.toString, ~pos=(width - 50, 15), env)
 
-  Draw.text(~body=score.total->Int.toString, ~pos=(5, 5), env)
-
-  buttons->Array.forEach(({Button.x: x, y, w, h, color} as button) => {
+  buttons->Array.forEach(({Button.x: x, y, w, h, key, color} as button) => {
     let isPressed = isPressed(button, control)
-    Button.draw(~x, ~y, ~w, ~h, ~color, ~isPressed, env)
+    Button.draw(~x, ~y, ~w, ~h, ~color, ~isPressed, ~key, env)
   })
 
   notes->Array.forEach(({x, y, w, h, color}) => {

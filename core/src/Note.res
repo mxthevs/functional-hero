@@ -53,6 +53,46 @@ let init = [
     color: Orange,
     hit: false,
   },
+  {
+    x: Common.width / 2 - size / 2 - padd * 2,
+    y: defaultY - 300,
+    w: size,
+    h: size,
+    color: Green,
+    hit: false,
+  },
+  {
+    x: Common.width / 2 - size / 2 - padd,
+    y: defaultY - 300 * 2,
+    w: size,
+    h: size,
+    color: Red,
+    hit: false,
+  },
+  {
+    x: Common.width / 2 - size / 2,
+    y: defaultY - 300 * 4,
+    w: size,
+    h: size,
+    color: Yellow,
+    hit: false,
+  },
+  {
+    x: Common.width / 2 - size / 2 + padd,
+    y: defaultY - 300 * 5,
+    w: size,
+    h: size,
+    color: Blue,
+    hit: false,
+  },
+  {
+    x: Common.width / 2 - size / 2 + padd * 2,
+    y: defaultY - 300 * 7,
+    w: size,
+    h: size,
+    color: Orange,
+    hit: false,
+  },
 ]
 
 let draw = (~x, ~y, ~w, ~h, ~color, env) => {
